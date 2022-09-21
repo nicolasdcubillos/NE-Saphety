@@ -3,7 +3,7 @@ using NE_Saphety_DLL.Controller;
 
 namespace NE_Saphety_DLL
 {
-    public class DocumentoSoporte
+    public class NominaElectronica
     {
         [InterfaceType(ComInterfaceType.InterfaceIsDual)]
         public interface DLLInterface
@@ -20,9 +20,9 @@ namespace NE_Saphety_DLL
 
         [ComSourceInterfaces(typeof(DLLInterface))]
         [ClassInterface(ClassInterfaceType.AutoDual)]
-        [ProgId("DSSaphety.Class")]
+        [ProgId("NESaphety.Class")]
         [ComVisible(true)]
-        public class DSSaphety : DLLInterface
+        public class NESaphety : DLLInterface
         {
             private InvoiceController invoiceController = new InvoiceController();
             public string enviarDocumentoSoporte (DocumentoSoporteDTO documentoSoporteDTO)

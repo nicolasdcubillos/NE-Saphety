@@ -15,7 +15,7 @@ namespace NE_Saphety_DLL.Controller
         private static PropertiesController properties = new PropertiesController();
         private static List<string> empresasAutorizadas = new List<string>();
         private static String FOLDER_DOCS = "\\DocumentosSoporte\\";
-        private static String ERRORS_FILE = "LogErroresDS.txt";
+        private static String ERRORS_FILE = "LogErroresNE.txt";
         public InvoiceController () {
             empresasAutorizadas.Add("860010268-1");
             empresasAutorizadas.Add("800145400-8");

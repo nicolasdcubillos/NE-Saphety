@@ -42,10 +42,10 @@ namespace NE_Saphety_DLL.Controller
             } catch { throw; }
         }
 
-        public CreacionDocumentoDTO enviarDocumentoSoporte (DocumentoSoporteDTO documentoSoporteDTO)
+        public CreacionDocumentoDTO enviarNominaIndividual(NominaIndividualDTO nominaIndividualDTO)
         {
             try {
-                var task = postAsync(documentoSoporteDTO, WS_URL.ENVIAR_DOCUMENTO_SOPORTE);
+                var task = postAsync(nominaIndividualDTO, WS_URL.ENVIAR_NOMINA_INDIVIDUAL);
                 task.Wait();
                 var respuestaObj = JsonConvert.DeserializeObject<CreacionDocumentoDTO>(task.Result);
                 return respuestaObj;
@@ -55,25 +55,6 @@ namespace NE_Saphety_DLL.Controller
                 var line = frame.GetFileLineNumber();
                 throw new Exception("[Threading] " + st);
             } catch { throw; }
-        }
-
-        public CreacionDocumentoDTO enviarAjusteDocumento (DocumentoSoporteAjusteDTO documentoSoporteAjusteDTO)
-        {
-            try
-            {
-                var task = postAsync(documentoSoporteAjusteDTO, WS_URL.ENVIAR_AJUSTE_DOCUMENTO);
-                task.Wait();
-                var respuestaObj = JsonConvert.DeserializeObject<CreacionDocumentoDTO>(task.Result);
-                return respuestaObj;
-            }
-            catch (AggregateException exception)
-            {
-                var st = new StackTrace(exception, true);
-                var frame = st.GetFrame(0);
-                var line = frame.GetFileLineNumber();
-                throw new Exception("[Threading] " + st);
-            }
-            catch { throw; }
         }
 
         private async Task<string> postAsync(Object requestBodyDTO, WS_URL requestType)

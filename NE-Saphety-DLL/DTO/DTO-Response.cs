@@ -34,7 +34,7 @@ namespace NE_Saphety_DLL
 
     internal class TokenDTO : RespuestaSaphetyDTO
     {
-        public DataTokenDTO ResultData { get; set; }
+        public new DataTokenDTO ResultData { get; set; }
     }
 
     /*
@@ -51,7 +51,7 @@ namespace NE_Saphety_DLL
 
     internal class CreacionDocumentoDTO : RespuestaSaphetyDTO
     {
-        public DataCreacionDocumentoDTO ResultData { get; set; } = new DataCreacionDocumentoDTO();
+        public new DataCreacionDocumentoDTO ResultData { get; set; } = new DataCreacionDocumentoDTO();
     }
 
     /*
@@ -93,6 +93,6 @@ namespace NE_Saphety_DLL
     }
     internal class ConsultarDocumentoDTO : RespuestaSaphetyDTO
     {
-        public DataConsultarDocumentoDTO ResultData { get; set; }
+        public new DataConsultarDocumentoDTO ResultData { get; set; }
     }
 }

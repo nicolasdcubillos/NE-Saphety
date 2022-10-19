@@ -14,66 +14,42 @@ namespace NE_Saphety_DLL.Controller
         private static SaphetyController saphetyController = new SaphetyController();
         private static PropertiesController properties = new PropertiesController();
         private static List<string> empresasAutorizadas = new List<string>();
-        private static String FOLDER_DOCS = "\\DocumentosSoporte\\";
+        private static String FOLDER_DOCS = "\\NominaElectronica\\";
         private static String ERRORS_FILE = "LogErroresNE.txt";
         public InvoiceController () {
             empresasAutorizadas.Add("860010268-1");
             empresasAutorizadas.Add("800145400-8");
             empresasAutorizadas.Add("900141348-7");
         }
-        public String enviarDocumentoSoporte (DocumentoSoporteDTO documentoSoporteDTO) { 
+        public String enviarNominaIndividual (NominaIndividualDTO nominaIndividualDTO) { 
             try {
-                saveDoc(documentoSoporteDTO); 
-                CreacionDocumentoDTO respuesta = saphetyController.enviarDocumentoSoporte(documentoSoporteDTO);
-                if (respuesta.errors.Count > 0) {
-                    foreach (WarningErrorDTO error in respuesta.errors) {
-                        String errorMessage = " - Field: " + error.Field
-                                          + "\n - Code: " + error.Code
-                                          + "\n - Description: " + error.Description;
-                        foreach (String st in error.ExplanationValues) {
-                            errorMessage += "\n - Explanation Value: " + st;
-                        }
-                        writeErrorInLog(documentoSoporteDTO.CorrelationDocumentId, errorMessage);
-                    }
+                saveDoc(nominaIndividualDTO); 
+                CreacionDocumentoDTO respuesta = saphetyController.enviarNominaIndividual(nominaIndividualDTO);
+                if (respuesta.errors.Count > 0)
+                {
+                    catchErrors(respuesta.errors, nominaIndividualDTO.CorrelationDocumentId);
                     return "ERROR";
                 } else return respuesta.ResultData.CUFE;
             } catch (Exception ex) {
                 var st = new StackTrace(ex, true);
                 var frame = st.GetFrame(0);
                 var line = frame.GetFileLineNumber();
-                writeErrorInLog(documentoSoporteDTO.CorrelationDocumentId, "(" + ex + ") " + st.ToString());
+                writeErrorInLog(nominaIndividualDTO.CorrelationDocumentId, "(" + ex + ") " + st.ToString());
                 return "ERROR";
             }
         }
-
-        public String enviarAjusteDocumento (DocumentoSoporteAjusteDTO documentoSoporteAjusteDTO)
+        private void catchErrors(List <WarningErrorDTO> errors, String CorrelationDocumentId)
         {
-            try
+            foreach (WarningErrorDTO error in errors)
             {
-                saveDoc(documentoSoporteAjusteDTO);
-                CreacionDocumentoDTO respuesta = saphetyController.enviarAjusteDocumento(documentoSoporteAjusteDTO);
-                if (respuesta.errors.Count > 0)
+                String errorMessage = " - Field: " + error.Field
+                                  + "\n - Code: " + error.Code
+                                  + "\n - Description: " + error.Description;
+                foreach (String st in error.ExplanationValues)
                 {
-                    foreach (WarningErrorDTO error in respuesta.errors)
-                    {
-                        String errorMessage = " - Field: " + error.Field
-                                          + "\n - Code: " + error.Code
-                                          + "\n - Description: " + error.Description;
-                        foreach (String st in error.ExplanationValues)
-                        {
-                            errorMessage += "\n - Explanation Value: " + st;
-                        }
-                        writeErrorInLog(documentoSoporteAjusteDTO.CorrelationDocumentId, errorMessage);
-                    }
-                    return "ERROR";
+                    errorMessage += "\n - Explanation Value: " + st;
                 }
-                else return respuesta.ResultData.CUFE;
-            } catch (Exception ex) {
-                var st = new StackTrace(ex, true);
-                var frame = st.GetFrame(0);
-                var line = frame.GetFileLineNumber();
-                writeErrorInLog(documentoSoporteAjusteDTO.CorrelationDocumentId, "(" + ex + ") " + st.ToString());
-                return "ERROR";
+                writeErrorInLog(CorrelationDocumentId, errorMessage);
             }
         }
         private Boolean getAccessToken()
@@ -142,11 +118,11 @@ namespace NE_Saphety_DLL.Controller
             configuracion.NOTA_AJUSTE = properties.read("NOTA_AJUSTE");
             return configuracion;
         }
-        private void saveDoc (DocumentoSoporteDTO documento) {
+        private void saveDoc (NominaIndividualDTO documento) {
             String path = properties.read("PATH") + FOLDER_DOCS;
             validatePath(path);
             string json = JsonConvert.SerializeObject(documento, Formatting.Indented);
-            File.WriteAllText(path + documento.SeriePrefix + documento.SerieNumber + "-" + documento.CorrelationDocumentId + ".json", json);
+            File.WriteAllText(path + documento.CorrelationDocumentId + "-DATEHERE-.json", json);
         }       
         private void validatePath (string path) { if (!Directory.Exists(path)) { Directory.CreateDirectory(path); } }
  

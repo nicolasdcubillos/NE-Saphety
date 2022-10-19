@@ -10,8 +10,7 @@ namespace NE_Saphety_DLL.Utils
     public enum WS_URL
     {
         SOLICITAR_TOKEN,
-        ENVIAR_DOCUMENTO_SOPORTE,
-        ENVIAR_AJUSTE_DOCUMENTO
+        ENVIAR_NOMINA_INDIVIDUAL
     }
 
     public static class WS_URLS_EXTENSIONS
@@ -25,10 +24,8 @@ namespace NE_Saphety_DLL.Utils
             {
                 case WS_URL.SOLICITAR_TOKEN:
                     return version + "auth/gettoken";
-                case WS_URL.ENVIAR_DOCUMENTO_SOPORTE:
-                    return version + virtualOperator + "outbounddocuments/supportDocument";
-                case WS_URL.ENVIAR_AJUSTE_DOCUMENTO:
-                    return version + virtualOperator + "outbounddocuments/supportDocumentAdjust";
+                case WS_URL.ENVIAR_NOMINA_INDIVIDUAL:
+                    return version + virtualOperator + "payroll/payroll";
                 default:
                     return null;
             }

@@ -9,7 +9,7 @@ namespace NE_Saphety_DLL
         public interface DLLInterface
         {
             [DispId(0)]
-            string enviarDocumentoSoporte(DocumentoSoporteDTO documentoSoporteDTO);
+            string enviarNominaIndividual(NominaIndividualDTO nominaIndividualDTO);
             [DispId(1)]
             bool auth(string empresa);
             [DispId(2)]
@@ -25,13 +25,9 @@ namespace NE_Saphety_DLL
         public class NESaphety : DLLInterface
         {
             private InvoiceController invoiceController = new InvoiceController();
-            public string enviarDocumentoSoporte (DocumentoSoporteDTO documentoSoporteDTO)
+            public string enviarNominaIndividual(NominaIndividualDTO nominaIndividualDTO)
             {
-                return invoiceController.enviarDocumentoSoporte(documentoSoporteDTO);
-            }
-            public string enviarAjusteDocumento (DocumentoSoporteAjusteDTO documentoSoporteAjusteDTO)
-            {
-                return invoiceController.enviarAjusteDocumento(documentoSoporteAjusteDTO);
+                return invoiceController.enviarNominaIndividual(nominaIndividualDTO);
             }
             public bool auth(string empresa)
             {

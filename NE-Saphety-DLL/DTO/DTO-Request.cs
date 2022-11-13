@@ -130,6 +130,9 @@ namespace NE_Saphety_DLL
     {
         public String Forma { get; set; }
         public String Metodo { get; set; }
+        public String Banco { get; set; }
+        public String TipoCuenta { get; set; }
+        public String NumeroCuenta { get; set; }
     }
 
     [ClassInterface(ClassInterfaceType.AutoDual)]
@@ -138,7 +141,7 @@ namespace NE_Saphety_DLL
     public class Basico
     {
         public String DiasTrabajados { get; set; }
-        public String SueldoTrabajado { get; set; }
+        public String SueldoTrabajado { get; set; } = "0";
     }
 
     [ClassInterface(ClassInterfaceType.AutoDual)]
@@ -177,6 +180,18 @@ namespace NE_Saphety_DLL
     {
         public List<Vacacion> VacacionesComunes { get; set; } = new List<Vacacion>();
         public List<Vacacion> VacacionesCompensadas { get; set; } = new List<Vacacion>();
+
+        [DispId(0)]
+        public void addVacacionesComunes(Vacacion vacacionesComunes)
+        {
+            this.VacacionesComunes.Add(vacacionesComunes);
+        }
+
+        [DispId(1)]
+        public void addVacacionesCompensadas(Vacacion vacacionesCompensadas)
+        {
+            this.VacacionesCompensadas.Add(vacacionesCompensadas);
+        }
     }
 
     [ClassInterface(ClassInterfaceType.AutoDual)]
@@ -314,14 +329,36 @@ namespace NE_Saphety_DLL
         public List<HoraExtra> HRNs { get; set; } = new List<HoraExtra>();
         public List<HoraExtra> HRDDFs { get; set; } = new List<HoraExtra>();
         public List<HoraExtra> HRNDFs { get; set; } = new List<HoraExtra>();
-        public Vacaciones Vacaciones { get; set; }
-        public String Dotacion { get; set; }
+        public Vacaciones Vacaciones { get; set; } = new Vacaciones();
+        public Primas Primas { get; set; } = new Primas();
+        public Cesantias Cesantias { get; set; } = new Cesantias();
+        public List<Incapacidad> Incapacidades { get; set; } = new List<Incapacidad>();
+        public Licencias Licencias { get; set; } = new Licencias();
+        public List<Bonificacion> Bonificaciones { get; set; } = new List<Bonificacion>();
+        public List<Auxilio> Auxilios { get; set; } = new List<Auxilio>();
+        public List<OtroConcepto> OtrosConceptos { get; set; } = new List<OtroConcepto>();
+        public List<Compensacion> Compensaciones { get; set; } = new List<Compensacion>();
+        public List<BonoEPCTV> BonoEPCTVs { get; set; } = new List<BonoEPCTV>();
+        public List<ComisionDTO> Comisiones { get; set; } = new List<ComisionDTO>();
+        public List<PagoTerceroDTO> PagosTercerosDTO { get; set; } = new List<PagoTerceroDTO>();
+        public List<AnticipoDTO> Anticipos { get; set; } = new List<AnticipoDTO>();
+        public String Dotacion { get; set; }        
         public String ApoyoSost { get; set; }
         public String Teletrabajo { get; set; }
         public String BonifRetiro { get; set; }
-
         public String Indemnizacion { get; set; }
         public String Reintegro { get; set; }
+
+        [DispId(0)]
+        public void addTransporte(Transporte transporte)
+        {
+            this.Transporte.Add(transporte);
+        }
+        [DispId(1)]
+        public void addHED(HoraExtra HED)
+        {
+            this.HEDs.Add(HED);
+        }
     }
 
     [ClassInterface(ClassInterfaceType.AutoDual)]
@@ -363,9 +400,9 @@ namespace NE_Saphety_DLL
     }
 
     [ClassInterface(ClassInterfaceType.AutoDual)]
-    [ProgId("Sanciones.Class")]
+    [ProgId("Sancion.Class")]
     [ComVisible(true)]
-    public class Sanciones
+    public class Sancion
     {
         public String SancionPublic { get; set; }
         public String SancionPriv { get; set; }
@@ -393,6 +430,15 @@ namespace NE_Saphety_DLL
     [ComVisible(true)]
     public class Deducciones
     {
+        public Salud Salud { get; set; } = new Salud();
+        public FondoPension FondoPension { get; set; } = new FondoPension();
+        public FondoSP FondoSP { get; set; } = new FondoSP();
+        public List<Sindicato> Sindicatos { get; set; } = new List<Sindicato>();
+        public List<Sancion> Sanciones { get; set; } = new List<Sancion>();
+        public List<Libranza> Libranzas { get; set; } = new List<Libranza>();
+        public List<PagoTerceroDTO> PagoTerceros { get; set; } = new List<PagoTerceroDTO>();
+        public List<AnticipoDTO> Anticipos { get; set; } = new List<AnticipoDTO>();
+        public List<OtraDeduccionDTO> OtrasDeducciones { get; set; } = new List<OtraDeduccionDTO>();
         public String PensionVoluntaria { get; set; }
         public String RetencionFuente { get; set; }
         public String AFC { get; set; }
@@ -410,9 +456,17 @@ namespace NE_Saphety_DLL
     public class NominaIndividualDTO
     {
         public List<FechaPagoDTO> FechasPagos { get; set; } = new List<FechaPagoDTO>();
+        public Periodo Periodo { get; set; } = new Periodo();
+        public NumeroSecuenciaXML NumeroSecuenciaXML { get; set; } = new NumeroSecuenciaXML();
+        public LugarGeneracionXML LugarGeneracionXML { get; set; } = new LugarGeneracionXML();
+        public InformacionGeneral InformacionGeneral { get; set; } = new InformacionGeneral();
         public List<String> Notas { get; set; } = new List<String>();
-        public Devengados Devengados { get; set; }
-        public Deducciones Deducciones { get; set; }
+        public Empleador Empleador { get; set; } = new Empleador();
+        public Trabajador Trabajador { get; set; } = new Trabajador();
+        public Pago Pago { get; set; } = new Pago();
+
+        public Devengados Devengados { get; set; } = new Devengados();
+        public Deducciones Deducciones { get; set; } = new Deducciones();
         public String DevengadosTotal { get; set; }
         public String DeduccionesTotal { get; set; }
         public String ComprobanteTotal { get; set; }

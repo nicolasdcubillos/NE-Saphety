@@ -241,6 +241,22 @@ namespace NE_Saphety_DLL
         public List<Licencia> LicenciaMP { get; set; } = new List<Licencia>();
         public List<Licencia> LicenciaR { get; set; } = new List<Licencia>();
         public List<Licencia> LicenciaNR { get; set; } = new List<Licencia>();
+
+        [DispId(0)]
+        public void addLicenciaMP(Licencia licencia)
+        {
+            this.LicenciaMP.Add(licencia);
+        }
+        [DispId(1)]
+        public void addLicenciaR(Licencia licencia)
+        {
+            this.LicenciaR.Add(licencia);
+        }
+        [DispId(2)]
+        public void addLicenciaNR(Licencia licencia)
+        {
+            this.LicenciaNR.Add(licencia);
+        }
     }
 
     [ClassInterface(ClassInterfaceType.AutoDual)]
@@ -358,6 +374,36 @@ namespace NE_Saphety_DLL
         public void addHED(HoraExtra HED)
         {
             this.HEDs.Add(HED);
+        }
+        [DispId(2)]
+        public void addIncapacidad(Incapacidad incapacidad)
+        {
+            this.Incapacidades.Add(incapacidad);
+        }
+        [DispId(3)]
+        public void addAuxilio(Auxilio auxilio)
+        {
+            this.Auxilios.Add(auxilio);
+        }
+        [DispId(4)]
+        public void addOtroConcepto(OtroConcepto otroConcepto)
+        {
+            this.OtrosConceptos.Add(otroConcepto);
+        }
+        [DispId(5)]
+        public void addBonoEPCTV(BonoEPCTV bonoEPCTV)
+        {
+            this.BonoEPCTVs.Add(bonoEPCTV);
+        }
+        [DispId(6)]
+        public void addPagoTercero(PagoTerceroDTO pagoTercero)
+        {
+            this.PagosTercerosDTO.Add(pagoTercero);
+        }
+        [DispId(7)]
+        public void addAnticipo(AnticipoDTO anticipo)
+        {
+            this.Anticipos.Add(anticipo);
         }
     }
 

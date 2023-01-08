@@ -202,6 +202,13 @@ namespace NE_Saphety_DLL
         public String Cantidad { get; set; }
         public String Pago { get; set; }
         public String PagoNS { get; set; }
+
+        public Primas ()
+        {
+            this.Cantidad = "0";
+            this.Pago = "0";
+            this.PagoNS = "0";
+        }
     }
 
     [ClassInterface(ClassInterfaceType.AutoDual)]

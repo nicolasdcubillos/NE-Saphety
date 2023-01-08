@@ -123,7 +123,7 @@ namespace NE_Saphety_DLL.Controller
             String path = properties.read("PATH") + FOLDER_DOCS;
             validatePath(path);
             string json = JsonConvert.SerializeObject(documento, Formatting.Indented);
-            File.WriteAllText(path + documento.CorrelationDocumentId + "-DATEHERE-.json", json);
+            File.WriteAllText(path + documento.CorrelationDocumentId + ".json", json);
         }       
         private void validatePath (string path) { if (!Directory.Exists(path)) { Directory.CreateDirectory(path); } }
  

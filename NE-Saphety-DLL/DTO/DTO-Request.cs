@@ -219,6 +219,13 @@ namespace NE_Saphety_DLL
         public String Pago { get; set; }
         public String Porcentaje { get; set; }
         public String PagoIntereses { get; set; }
+
+        public Cesantias ()
+        {
+            this.Pago = "0";
+            this.Porcentaje = "0";
+            this.PagoIntereses = "0";
+        }
     }
 
     [ClassInterface(ClassInterfaceType.AutoDual)]

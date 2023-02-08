@@ -141,7 +141,7 @@ namespace NE_Saphety_DLL
     public class Basico
     {
         public String DiasTrabajados { get; set; }
-        public String SueldoTrabajado { get; set; } = "0";
+        public String SueldoTrabajado { get; set; } = "0.00";
     }
 
     [ClassInterface(ClassInterfaceType.AutoDual)]
@@ -206,8 +206,8 @@ namespace NE_Saphety_DLL
         public Primas ()
         {
             this.Cantidad = "0";
-            this.Pago = "0";
-            this.PagoNS = "0";
+            this.Pago = "0.00";
+            this.PagoNS = "0.00";
         }
     }
 
@@ -222,9 +222,9 @@ namespace NE_Saphety_DLL
 
         public Cesantias ()
         {
-            this.Pago = "0";
-            this.Porcentaje = "0";
-            this.PagoIntereses = "0";
+            this.Pago = "0.00";
+            this.Porcentaje = "0.00";
+            this.PagoIntereses = "0.00";
         }
     }
 
@@ -379,6 +379,16 @@ namespace NE_Saphety_DLL
         public String Indemnizacion { get; set; }
         public String Reintegro { get; set; }
 
+        public Devengados ()
+        {
+            Dotacion = "0.00";
+            ApoyoSost = "0.00";
+            Teletrabajo = "0.00";
+            BonifRetiro = "0.00";
+            Indemnizacion = "0.00";
+            Reintegro = "0.00";
+        }
+
         [DispId(0)]
         public void addTransporte(Transporte transporte)
         {
@@ -418,6 +428,21 @@ namespace NE_Saphety_DLL
         public void addAnticipo(AnticipoDTO anticipo)
         {
             this.Anticipos.Add(anticipo);
+        }
+        [DispId(8)]
+        public void addBonificacion(Bonificacion bonificacion)
+        {
+            this.Bonificaciones.Add(bonificacion);
+        }
+        [DispId(9)]
+        public void addCompensacion(Compensacion compensacion)
+        {
+            this.Compensaciones.Add(compensacion);
+        }
+        [DispId(10)]
+        public void addComision(ComisionDTO comision)
+        {
+            this.Comisiones.Add(comision);
         }
     }
 
@@ -508,6 +533,50 @@ namespace NE_Saphety_DLL
         public String Educacion { get; set; }
         public String Reintegro { get; set; }
         public String Deuda { get; set; }
+
+        public Deducciones ()
+        {
+            PensionVoluntaria = "0.00";
+            RetencionFuente = "0.00";
+            AFC = "0.00";
+            Cooperativa = "0.00";
+            EmbargoFiscal = "0.00";
+            PlanComplementarios = "0.00";
+            Educacion = "0.00";
+            Reintegro = "0.00";
+            Deuda = "0.00";
+        }
+
+        [DispId(0)]
+        public void addSindicato(Sindicato sindicato)
+        {
+            this.Sindicatos.Add(sindicato);
+        }
+        [DispId(1)]
+        public void addSancion(Sancion sancion)
+        {
+            this.Sanciones.Add(sancion);
+        }
+        [DispId(2)]
+        public void addLibranza(Libranza libranza)
+        {
+            this.Libranzas.Add(libranza);
+        }
+        [DispId(3)]
+        public void addPagoTercero(PagoTerceroDTO pagoTercero)
+        {
+            this.PagoTerceros.Add(pagoTercero);
+        }
+        [DispId(4)]
+        public void addAnticipo(AnticipoDTO anticipo)
+        {
+            this.Anticipos.Add(anticipo);
+        }
+        [DispId(5)]
+        public void addOtraDeduccion(OtraDeduccionDTO otraDeduccion)
+        {
+            this.OtrasDeducciones.Add(otraDeduccion);
+        }
     }
 
     [ClassInterface(ClassInterfaceType.AutoDual)]

@@ -30,7 +30,7 @@ namespace NE_Saphety_DLL.Controller
                 {
                     catchErrors(respuesta.errors, nominaIndividualDTO.CorrelationDocumentId);
                     return "ERROR";
-                } else return respuesta.ResultData.CUFE;
+                } else return respuesta.ResultData.CUNE;
             } catch (Exception ex) {
                 var st = new StackTrace(ex, true);
                 var frame = st.GetFrame(0);
@@ -85,7 +85,7 @@ namespace NE_Saphety_DLL.Controller
             String path = properties.read("PATH") + FOLDER_DOCS;
             validatePath(path);
             StreamWriter sw = new StreamWriter(path + ERRORS_FILE, true);
-            sw.WriteLine("[Respuesta Saphety " + DocumentSerial + "]\n" + error);
+            sw.WriteLine("[Respuesta Saphety " + DocumentSerial + " - " + DateTime.Now.ToString("dd-MM-yyyy hh:mm:ss") + "]\n" + error);
             sw.Close();
         }
         

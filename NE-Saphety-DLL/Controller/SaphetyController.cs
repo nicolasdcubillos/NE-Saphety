@@ -48,6 +48,7 @@ namespace NE_Saphety_DLL.Controller
                 var task = postAsync(nominaIndividualDTO, WS_URL.ENVIAR_NOMINA_INDIVIDUAL);
                 task.Wait();
                 var respuestaObj = JsonConvert.DeserializeObject<CreacionDocumentoDTO>(task.Result);
+                properties.write("respuesta", JsonConvert.SerializeObject(respuestaObj));
                 return respuestaObj;
             } catch (AggregateException exception) { 
                 var st = new StackTrace(exception, true);

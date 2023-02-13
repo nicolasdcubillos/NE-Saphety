@@ -545,6 +545,7 @@ namespace NE_Saphety_DLL
             Educacion = "0.00";
             Reintegro = "0.00";
             Deuda = "0.00";
+            FondoPension.Deduccion = "0.00";
         }
 
         [DispId(0)]
